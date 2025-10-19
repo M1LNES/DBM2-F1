@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="351db5cc-f7a1-465d-95a8-f559aa503477" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/db_init.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tables.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/connection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/race_operations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/weather_operations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/processors/file_processor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/race_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DBM2-sem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DBM2-sem.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preproces.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/preproces.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/simple.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visualisation.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/visualisation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sort.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +71,7 @@
       <recent name="C:\Users\milan\PycharmProjects\DBM2-sem\data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\milan\PycharmProjects\DBM2-sem\src\processors" />
       <recent name="C:\Users\milan\PycharmProjects\DBM2-sem\src" />
       <recent name="C:\Users\milan\PycharmProjects\DBM2-sem\test" />
     </key>
@@ -221,7 +224,7 @@
       <workItem from="1760041388457" duration="186000" />
       <workItem from="1760466622532" duration="1904000" />
       <workItem from="1760816547186" duration="5782000" />
-      <workItem from="1760872944336" duration="14014000" />
+      <workItem from="1760872944336" duration="15487000" />
     </task>
     <servers />
   </component>
@@ -229,7 +232,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/DBM2_sem$main.coverage" NAME="main Coverage Results" MODIFIED="1760886584231" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DBM2_sem$main.coverage" NAME="main Coverage Results" MODIFIED="1760888339178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DBM2_sem$sort.coverage" NAME="sort Coverage Results" MODIFIED="1760817053659" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DBM2_sem$1_fetch.coverage" NAME="1_fetch Coverage Results" MODIFIED="1760467894237" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DBM2_sem$db_init.coverage" NAME="db-init Coverage Results" MODIFIED="1760819520257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
