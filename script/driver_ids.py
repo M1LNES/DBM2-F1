@@ -25,7 +25,7 @@ target_codes = [
 
 # Spuštění skriptu
 if __name__ == "__main__":
-    csv_path = "../data/metadata/drivers.csv"
+    csv_path = "./data/metadata/drivers.csv"
 
     try:
         results = find_driver_ids(csv_path, target_codes)

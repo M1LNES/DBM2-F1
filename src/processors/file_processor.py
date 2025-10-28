@@ -3,12 +3,15 @@ import pandas as pd
 from ..database.race_operations import RaceOperations
 from ..database.weather_operations import WeatherOperations
 from ..utils.race_utils import is_city_circuit, is_night_race
+from script.circuit_mapper import create_circuit_mapper, find_circuit_id
 
 
 class FileProcessor:
     def __init__(self, race_ops: RaceOperations, weather_ops: WeatherOperations):
         self.race_ops = race_ops
         self.weather_ops = weather_ops
+        self.circuits, self.keyword_to_circuit = create_circuit_mapper()
+
 
     def process_race_file(self, file_path):
         try:
@@ -21,8 +24,9 @@ class FileProcessor:
             lap_start_date = df['LapStartDate'].iloc[0]
             city_circuit = is_city_circuit(race_name)
             night_race = is_night_race(race_name)
+            circuit_id = find_circuit_id(race_name, self.keyword_to_circuit)
 
-            self.race_ops.create_race_record(year, race_name, file_name, lap_start_date, night_race, city_circuit)
+            self.race_ops.create_race_record(year, race_name, file_name, lap_start_date, night_race, city_circuit, circuit_id)
 
             # Ingest race results
             df_full = pd.read_csv(file_path)

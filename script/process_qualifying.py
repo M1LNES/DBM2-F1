@@ -6,7 +6,7 @@ def create_mapping_dictionaries():
     """Vytvoří mapovací slovníky"""
 
     # 1. Jezdci: external_driver_id -> driver_code
-    driver_csv_path = "../data/metadata/drivers.csv"
+    driver_csv_path = "./data/metadata/drivers.csv"
     target_codes = [
         'AIT', 'ALB', 'ALO', 'ANT', 'BEA', 'BOR', 'BOT', 'COL', 'DEV', 'DOO',
         'FIT', 'GAS', 'GIO', 'GRO', 'HAD', 'HAM', 'HUL', 'KUB', 'KVY', 'LAT',
@@ -25,7 +25,7 @@ def create_mapping_dictionaries():
     # 2. Závody: their_raceId -> my_race_id
     # Krok 1: jejich races.csv → raceId -> (year, round)
     their_race_to_year_round = {}
-    with open('../data/metadata/races.csv', 'r', encoding='utf-8') as file:
+    with open('./data/metadata/races.csv', 'r', encoding='utf-8') as file:
         reader = csv.DictReader(file)
         for row in reader:
             race_id = row['raceId']
@@ -34,7 +34,7 @@ def create_mapping_dictionaries():
             their_race_to_year_round[race_id] = (year, round_num)
 
     # Krok 2: moje DB → (year, round) -> my_race_id
-    conn = duckdb.connect("../race_database.db")
+    conn = duckdb.connect("./race_database.db")
     query = "SELECT race_id, year FROM races ORDER BY race_date"
     my_races = conn.execute(query).fetchall()
 
@@ -59,7 +59,7 @@ def create_mapping_dictionaries():
     return driver_map, race_map
 
 
-def process_qualifying_data(db_path='../race_database.db', csv_path='../data/metadata/qualifying.csv'):
+def process_qualifying_data(db_path='./race_database.db', csv_path='./data/metadata/qualifying.csv'):
     driver_map, race_map = create_mapping_dictionaries()
 
     conn = duckdb.connect(db_path)

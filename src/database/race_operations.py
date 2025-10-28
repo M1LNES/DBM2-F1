@@ -6,16 +6,31 @@ class RaceOperations:
     def __init__(self, db_connection: DatabaseConnection):
         self.db = db_connection
 
-    def create_race_record(self, year, race_name, file_name, lap_start_date, night_race, city_circuit):
+    def create_race_record(self, year, race_name, file_name, lap_start_date, night_race, city_circuit, circuit_id):
         with self.db.get_cursor() as conn:
             conn.execute("""
-                INSERT INTO races (race_id, year, race_name, file_name, race_date, night_race, city_circuit)
-                VALUES (nextval('seq_race_id'),?, ?, ?, CAST(? AS DATE), ?, ?)
-            """, (year, race_name, file_name, lap_start_date, night_race, city_circuit))
+                INSERT INTO races (race_id, year, race_name, file_name, race_date, night_race, city_circuit, circuit_id)
+                VALUES (nextval('seq_race_id'),?, ?, ?, CAST(? AS DATE), ?, ?, ?)
+            """, (year, race_name, file_name, lap_start_date, night_race, city_circuit, circuit_id))
 
     def get_current_race_id(self):
         with self.db.get_cursor() as conn:
             return conn.execute("SELECT currval('seq_race_id')").fetchone()[0]
+
+    def insert_race(self, year, race_name, file_name, race_date=None, night_race=False, city_circuit=False,
+                    circuit_id=None):
+        """Insert a new race into the database"""
+
+        race_id = self.connection.execute(
+            "SELECT nextval('seq_race_id')"
+        ).fetchone()[0]
+
+        self.connection.execute("""
+            INSERT INTO races (race_id, year, race_name, file_name, race_date, night_race, city_circuit, circuit_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """, [race_id, year, race_name, file_name, race_date, night_race, city_circuit, circuit_id])
+
+        return race_id
 
     def batch_insert_race_results(self, df, race_id):
         # Preparation of data and handling NaN values

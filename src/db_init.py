@@ -9,6 +9,18 @@ def create_race_database(db_path='race_database.db'):
     try:
         # Creating table for races
         conn.execute("""
+         CREATE TABLE circuits (
+            circuit_id INTEGER PRIMARY KEY,
+            circuit_ref VARCHAR NOT NULL,
+            name VARCHAR NOT NULL,
+            location VARCHAR NOT NULL,
+            country VARCHAR NOT NULL,
+            lat DOUBLE,
+            lng DOUBLE,
+            alt INTEGER
+        )""")
+
+        conn.execute("""
         CREATE TABLE races (
             race_id INTEGER PRIMARY KEY,
             year INTEGER NOT NULL,
@@ -16,7 +28,9 @@ def create_race_database(db_path='race_database.db'):
             file_name VARCHAR NOT NULL,
             race_date DATE,
             night_race BOOLEAN DEFAULT FALSE,
-            city_circuit BOOLEAN DEFAULT FALSE
+            city_circuit BOOLEAN DEFAULT FALSE,
+            circuit_id INTEGER,
+            FOREIGN KEY (circuit_id) REFERENCES circuits(circuit_id)
         );
         """)
 
@@ -105,6 +119,8 @@ def create_race_database(db_path='race_database.db'):
         conn.execute("CREATE INDEX idx_weather_race_id ON weather_data(race_id);")
         conn.execute("CREATE INDEX idx_qualifying_race ON qualifying(race_id);")
         conn.execute("CREATE INDEX idx_qualifying_driver ON qualifying(race_id, driver);")
+        conn.execute("CREATE INDEX idx_circuits_ref ON circuits(circuit_ref);")
+        conn.execute("CREATE INDEX idx_races_circuit ON races(circuit_id);")
 
         print("Database was created successfully.")
 

@@ -6,6 +6,7 @@ from src.database.connection import DatabaseConnection
 from src.database.race_operations import RaceOperations
 from src.database.weather_operations import WeatherOperations
 from src.processors.file_processor import FileProcessor
+from script.load_circuits import load_circuits
 
 
 def ingest_race_data(data_folder_path='./data', db_path='race_database.db'):
@@ -31,9 +32,11 @@ def ingest_race_data(data_folder_path='./data', db_path='race_database.db'):
             if file.endswith('weather.csv'):
                 print(f'Processing weather file: {file_path}')
                 processor.process_weather_file(file_path)
-            else:
+            elif file.endswith('Race.csv'):
                 print(f'Processing race-result file: {file_path}')
                 processor.process_race_file(file_path)
+            else:
+                print(f'Skipping unrecognized file: {file_path}')
 
         print("Data ingestion completed.")
         return True
@@ -56,6 +59,13 @@ def main():
     print("=== Initialization of DB ===")
     create_race_database()
 
+    print("\n=== Loading circuits ===")
+    circuits_ok = load_circuits()
+
+    if not circuits_ok:
+        print("Failed to load circuits, aborting!")
+        return
+
     print("\n=== Ingest data ===")
     success = ingest_race_data()
 
@@ -64,4 +74,4 @@ def main():
 
 
 if __name__ == "__main__":
-    post_process_data()
+    main()

@@ -1,4 +1,14 @@
--- Tabulka závodů (metadata)
+CREATE TABLE circuits (
+    circuit_id INTEGER PRIMARY KEY,
+    circuit_ref VARCHAR NOT NULL,
+    name VARCHAR NOT NULL,
+    location VARCHAR NOT NULL,
+    country VARCHAR NOT NULL,
+    lat DOUBLE,
+    lng DOUBLE,
+    alt INTEGER
+);
+
 CREATE TABLE races (
     race_id INTEGER PRIMARY KEY,
     year INTEGER NOT NULL,
@@ -7,6 +17,7 @@ CREATE TABLE races (
     race_date DATE,
     night_race BOOLEAN DEFAULT FALSE,
     city_circuit BOOLEAN DEFAULT FALSE
+    FOREIGN KEY (circuit_id) REFERENCES circuits(circuit_id)
 );
 
 CREATE TABLE race_results (
@@ -72,6 +83,8 @@ CREATE TABLE qualifying (
     q3 VARCHAR,
     FOREIGN KEY (race_id) REFERENCES races(race_id)
 );
+
+
 
 -- Indexes for performance optimization
 CREATE INDEX idx_race_results_race_time ON race_results(race_id);
