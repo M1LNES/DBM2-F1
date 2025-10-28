@@ -79,15 +79,32 @@ def create_race_database(db_path='race_database.db'):
         );
         """)
 
+        conn.execute("""
+        CREATE TABLE qualifying (
+            id INTEGER PRIMARY KEY,
+            race_id INTEGER NOT NULL,
+            driver VARCHAR NOT NULL,
+            position INTEGER,
+            q1 VARCHAR,
+            q2 VARCHAR,
+            q3 VARCHAR,
+            FOREIGN KEY (race_id) REFERENCES races(race_id)
+        );
+        """)
+
         conn.execute("CREATE SEQUENCE seq_race_id START 1;")
         conn.execute("CREATE SEQUENCE seq_weather_id START 1;")
         conn.execute("CREATE SEQUENCE seq_result_id START 1;")
+        conn.execute("CREATE SEQUENCE seq_qual_id START 1;")
+
 
 
         # Creating indexes for performance optimization
         conn.execute("CREATE INDEX idx_race_results_race_id ON race_results(race_id);")
         conn.execute("CREATE INDEX idx_race_results_driver ON race_results(race_id, driver);")
         conn.execute("CREATE INDEX idx_weather_race_id ON weather_data(race_id);")
+        conn.execute("CREATE INDEX idx_qualifying_race ON qualifying(race_id);")
+        conn.execute("CREATE INDEX idx_qualifying_driver ON qualifying(race_id, driver);")
 
         print("Database was created successfully.")
 

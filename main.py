@@ -1,4 +1,6 @@
 import os
+
+from script.process_qualifying import process_qualifying_data
 from src.db_init import create_race_database
 from src.database.connection import DatabaseConnection
 from src.database.race_operations import RaceOperations
@@ -40,13 +42,26 @@ def ingest_race_data(data_folder_path='./data', db_path='race_database.db'):
         db_connection.close()
 
 
+def post_process_data():
+    print("\n=== Post-processing: Qualifying data ===")
+
+    try:
+        process_qualifying_data()
+
+    except Exception as e:
+        print(f"Error running qualifying processor: {e}")
+
+
 def main():
     print("=== Initialization of DB ===")
     create_race_database()
 
     print("\n=== Ingest data ===")
-    ingest_race_data()
+    success = ingest_race_data()
+
+    if success:
+        post_process_data()
 
 
 if __name__ == "__main__":
-    main()
+    post_process_data()
