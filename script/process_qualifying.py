@@ -3,9 +3,9 @@ import duckdb
 
 
 def create_mapping_dictionaries():
-    """Vytvoří mapovací slovníky"""
+    """Creates mapping dictionaries for drivers"""
 
-    # 1. Jezdci: external_driver_id -> driver_code
+    # 1. Drivers: external_driver_id -> driver_code
     driver_csv_path = "./data/metadata/drivers.csv"
     target_codes = [
         'AIT', 'ALB', 'ALO', 'ANT', 'BEA', 'BOR', 'BOT', 'COL', 'DEV', 'DOO',
@@ -22,8 +22,8 @@ def create_mapping_dictionaries():
             if code in target_codes:
                 driver_map[row['driverId']] = code
 
-    # 2. Závody: their_raceId -> my_race_id
-    # Krok 1: jejich races.csv → raceId -> (year, round)
+    # 2. Races: their_raceId -> my_race_id
+    # Step 1: their races.csv → raceId -> (year, round)
     their_race_to_year_round = {}
     with open('./data/metadata/races.csv', 'r', encoding='utf-8') as file:
         reader = csv.DictReader(file)
@@ -33,7 +33,7 @@ def create_mapping_dictionaries():
             round_num = int(row['round'])
             their_race_to_year_round[race_id] = (year, round_num)
 
-    # Krok 2: moje DB → (year, round) -> my_race_id
+    # Step 2: my DB → (year, round) -> my_race_id
     conn = duckdb.connect("./race_database.db")
     query = "SELECT race_id, year FROM races ORDER BY race_date"
     my_races = conn.execute(query).fetchall()
@@ -50,7 +50,7 @@ def create_mapping_dictionaries():
 
     conn.close()
 
-    # Krok 3: spojit → their_raceId -> my_race_id
+    # Step 3: JOIN → their_raceId -> my_race_id
     race_map = {}
     for their_race_id, (year, round_num) in their_race_to_year_round.items():
         if (year, round_num) in year_round_to_my_id:

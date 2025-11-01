@@ -3,7 +3,7 @@ import duckdb
 
 
 def load_circuits(db_path='race_database.db', csv_path='./data/metadata/circuits.csv'):
-    """Načte okruhy do tabulky circuits PŘED nahráním závodů"""
+    """Loads circuits from a CSV file into the circuits table in the database."""
     print("Loading circuits...")
 
     conn = duckdb.connect(db_path)

@@ -7,13 +7,13 @@ class WeatherOperations:
         self.db = db_connection
 
     def batch_insert_weather_data(self, df, race_id):
-        # Odstranění duplicit
+        # Remove duplicate records based on the first column
         first_column = df.columns[0]
         df_unique = df.drop_duplicates(subset=[first_column], keep='first')
 
         print(f"Original records: {len(df)}, after duplicates removed: {len(df_unique)}")
 
-        # Příprava dat
+        # Prepare data for insertion
         data_rows = []
         for _, row in df_unique.iterrows():
             data_rows.append((
