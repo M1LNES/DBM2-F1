@@ -2,7 +2,6 @@ import duckdb
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
 from pathlib import Path
 
 
@@ -65,12 +64,11 @@ def plot_weather_performance_correlation():
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(plots_dir / 'correlation_weather_performance.png', dpi=300, bbox_inches='tight')
-    print(f"Graf uložen: {plots_dir / 'correlation_weather_performance.png'}")
-    print("\nWeather-Performance Correlation Matrix:")
-    print(corr_matrix)
 
     plt.show()
     plt.close()
+
+    return corr_matrix
 
 
 def plot_tyre_strategy_correlation():
@@ -120,12 +118,11 @@ def plot_tyre_strategy_correlation():
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(plots_dir / 'correlation_tyre_strategy.png', dpi=300, bbox_inches='tight')
-    print(f"\nGraf uložen: {plots_dir / 'correlation_tyre_strategy.png'}")
-    print("\nTyre Strategy Correlation Matrix:")
-    print(corr_matrix)
 
     plt.show()
     plt.close()
+
+    return corr_matrix
 
 
 def plot_circuit_type_correlation():
@@ -170,20 +167,14 @@ def plot_circuit_type_correlation():
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(plots_dir / 'correlation_circuit_type.png', dpi=300, bbox_inches='tight')
-    print(f"\nGraf uložen: {plots_dir / 'correlation_circuit_type.png'}")
-    print("\nCircuit Type Correlation Matrix:")
-    print(corr_matrix)
 
     plt.show()
     plt.close()
 
+    return corr_matrix
+
 
 if __name__ == "__main__":
-    print("=== 1. Weather vs Performance Correlation ===")
     plot_weather_performance_correlation()
-
-    print("\n=== 2. Tyre Strategy Correlation ===")
     plot_tyre_strategy_correlation()
-
-    print("\n=== 3. Circuit Type Correlation ===")
     plot_circuit_type_correlation()

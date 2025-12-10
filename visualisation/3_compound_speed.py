@@ -1,8 +1,6 @@
-# python
 import duckdb
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 
 class TireLapTimeAnalysis:
@@ -99,8 +97,9 @@ class TireLapTimeAnalysis:
         ax1.grid(axis='y', alpha=0.3)
 
         plt.tight_layout()
-        plt.savefig('tire_lap_time_analysis.png', dpi=300)
+        plt.savefig('tire_lap_time_analysis.png', dpi=300, bbox_inches='tight')
         plt.show()
+        plt.close(fig)
 
     def plot_tire_lap_times_boxplot(self, distribution_df):
         """Create box plot for lap time distribution with outlier filtering."""
@@ -113,6 +112,9 @@ class TireLapTimeAnalysis:
         filtered_data = []
         for comp in compounds_order:
             data = distribution_df[distribution_df['tire_compound'] == comp]['lap_time_seconds'].values
+            if len(data) == 0:
+                filtered_data.append([])
+                continue
             q1 = pd.Series(data).quantile(0.25)
             q3 = pd.Series(data).quantile(0.75)
             iqr = q3 - q1
@@ -144,26 +146,12 @@ class TireLapTimeAnalysis:
         ax.grid(axis='y', alpha=0.3)
 
         plt.tight_layout()
-        plt.savefig('tire_lap_time_boxplot.png', dpi=300)
+        plt.savefig('tire_lap_time_boxplot.png', dpi=300, bbox_inches='tight')
         plt.show()
+        plt.close(fig)
 
-    def print_results(self, df):
-        """Print tire lap time statistics to console."""
-        print("=" * 100)
-        print("🏎️  TIRE LAP TIME ANALYSIS — Average lap time per compound")
-        print("=" * 100)
-        print(f"{'Compound':<12} {'Laps':>8} {'Avg ± SE (s)':>25} {'Median':>12} {'Min':>10} {'Max':>10}")
-        print("-" * 100)
-
-        for idx, row in df.iterrows():
-            print(f"{row['tire_compound']:<12} "
-                  f"{row['total_laps']:>8.0f} "
-                  f"{row['avg_lap_time_s']:>10.2f} ± {row['se_lap_time_s']:>6.3f} "
-                  f"{row['median_lap_time_s']:>12.2f} "
-                  f"{row['min_lap_time_s']:>10.2f} "
-                  f"{row['max_lap_time_s']:>10.2f}")
-
-        print("=" * 100)
+    def get_results(self):
+        return self.analyze_tire_lap_times()
 
     def close(self):
         self.conn.close()
@@ -172,7 +160,6 @@ class TireLapTimeAnalysis:
 if __name__ == "__main__":
     analyzer = TireLapTimeAnalysis()
     lap_time_df = analyzer.analyze_tire_lap_times()
-    analyzer.print_results(lap_time_df)
     analyzer.plot_tire_lap_times(lap_time_df)
 
     distribution_df = analyzer.get_lap_time_distribution()

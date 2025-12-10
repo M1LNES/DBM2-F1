@@ -1,9 +1,6 @@
-# python
 import duckdb
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
-from typing import Dict, List
 
 
 class RaceAttractiveness:
@@ -170,7 +167,6 @@ class RaceAttractiveness:
         """
         return self.conn.execute(query).df()
 
-    # python
     def calculate_battle_intensity(self) -> pd.DataFrame:
         """Calculate battle intensity — how many times drivers changed positions (exclude pit-stop laps)."""
         query = """
@@ -311,11 +307,6 @@ class RaceAttractiveness:
         plt.savefig('1_lead_changes.png', dpi=300, bbox_inches='tight')
         plt.show()
 
-        print("\n=== Chart 1: Lead Changes ===")
-        print("This chart shows how many times the race leader changed (position 1).")
-        print("For each timestamp I track who is in first place and count changes relative")
-        print("to the previous timestamp. More lead changes indicate a more contested victory.\n")
-
     def plot_top5_volatility(self, top_n=15):
         """Plot top 5 volatility."""
         df = self.calculate_top5_volatility().head(top_n)
@@ -334,11 +325,6 @@ class RaceAttractiveness:
         plt.tight_layout()
         plt.savefig('2_top5_volatility.png', dpi=300, bbox_inches='tight')
         plt.show()
-
-        print("\n=== Chart 2: Top-5 Volatility ===")
-        print("This chart measures dynamics within the top 5 positions of the race.")
-        print("For drivers in positions 1-5 I track position changes between laps (excluding pit stops)")
-        print("and compute the average magnitude of change. Higher values indicate more action at the front.\n")
 
     def plot_close_racing(self, top_n=15):
         """Plot closeness of racing (time gaps)."""
@@ -359,11 +345,6 @@ class RaceAttractiveness:
         plt.savefig('3_close_racing.png', dpi=300, bbox_inches='tight')
         plt.show()
 
-        print("\n=== Chart 3: Closeness of Racing ===")
-        print("This chart shows the average time differences between adjacent drivers in the top ten.")
-        print("For each lap I compute the time gap between positions (e.g., 1st vs 2nd, 2nd vs 3rd, etc.)")
-        print("and average across the race. Smaller values indicate tighter and more exciting battles.\n")
-
     def plot_unpredictability(self, top_n=15):
         """Plot unpredictability (qualifying → race)."""
         df = self.calculate_unpredictability().head(top_n)
@@ -382,11 +363,6 @@ class RaceAttractiveness:
         plt.tight_layout()
         plt.savefig('4_unpredictability.png', dpi=300, bbox_inches='tight')
         plt.show()
-
-        print("\n=== Chart 4: Unpredictability ===")
-        print("This chart compares qualifying positions with final race results.")
-        print("For each driver I compute the absolute difference between qualifying and final positions")
-        print("and average across drivers. Higher values mean more surprising outcomes.\n")
 
     def plot_battle_intensity(self, top_n=15):
         """Plot battle intensity (position swaps)."""
@@ -407,11 +383,6 @@ class RaceAttractiveness:
         plt.savefig('5_battle_intensity.png', dpi=300, bbox_inches='tight')
         plt.show()
 
-        print("\n=== Chart 5: Battle Intensity ===")
-        print("This chart counts the total number of position changes in the race (excluding pit-outs).")
-        print("For each driver I track how many times their position changed compared to the previous lap.")
-        print("A high number indicates an action-packed race with lots of overtakes.\n")
-
     def plot_composite_score(self, top_n=15):
         """Plot composite attractiveness score."""
         df = self.create_composite_score().head(top_n)
@@ -431,13 +402,6 @@ class RaceAttractiveness:
         plt.savefig('6_composite_score.png', dpi=300, bbox_inches='tight')
         plt.show()
 
-        print("\n=== Chart 6: Composite Attractiveness Score ===")
-        print("This final chart combines all 5 metrics into a single overall score:")
-        print("• Lead changes (25%) • Top-5 volatility (20%) • Closeness of racing (15%)")
-        print("• Unpredictability (20%) • Battle intensity (20%)")
-        print("Each metric is normalized to 0-1 and combined as a weighted average. Scores close to 1")
-        print("indicate an extremely attractive race across all dimensions.\n")
-
     def create_all_visualizations(self, top_n=15):
         """Create all individual charts."""
         self.plot_lead_changes(top_n)
@@ -451,25 +415,8 @@ class RaceAttractiveness:
         self.conn.close()
 
 
-# Usage
 if __name__ == "__main__":
     analyzer = RaceAttractiveness()
-
-    print("=" * 60)
-    print("F1 RACES ATTRACTIVENESS ANALYSIS - 5 METRICS")
-    print("=" * 60)
-
-    # Create all charts
     analyzer.create_all_visualizations(top_n=15)
-
-    # Print top 10 races
     composite = analyzer.create_composite_score()
-    print("\n" + "=" * 60)
-    print("TOP 10 MOST ATTRACTIVE RACES - SUMMARY")
-    print("=" * 60)
-    print(composite[['year', 'race_name', 'circuit_name', 'lead_changes',
-                     'avg_top5_position_change', 'avg_gap_seconds',
-                     'avg_position_change', 'total_position_changes',
-                     'attractiveness_score']].head(10).to_string(index=False))
-
     analyzer.close()

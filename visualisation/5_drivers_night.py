@@ -2,7 +2,6 @@ import duckdb
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
 from pathlib import Path
 
 
@@ -69,14 +68,11 @@ def plot_driver_heatmap_conditions():
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(plots_dir / 'driver_performance_heatmap.png', dpi=300, bbox_inches='tight')
-    print(f"Graf uložen: {plots_dir / 'driver_performance_heatmap.png'}")
-    print(f"Počet zobrazených jezdců: {num_drivers}")
 
     plt.show()
-    plt.close()
+    plt.close(fig)
 
-    print("\n=== Heatmap Data (All Drivers) ===")
-    print(pivot_df)
+    return pivot_df
 
 
 def plot_driver_comparison_day_vs_night():
@@ -118,7 +114,7 @@ def plot_driver_comparison_day_vs_night():
     drivers_both = df.groupby('driver')['night_race'].nunique()
     drivers_both = drivers_both[drivers_both == 2].index
 
-    df_both = df[df['driver'].isin(drivers_both)]
+    df_both = df[df['driver'].isin(drivers_both)].copy()
 
     # Create pivot for scatter plot
     pivot_df = df_both.pivot_table(
@@ -127,13 +123,16 @@ def plot_driver_comparison_day_vs_night():
         columns='night_race',
         aggfunc='mean'
     )
-    pivot_df.columns = ['Day Race', 'Night Race']
+    # Ensure columns are named consistently
+    pivot_df.rename(columns={False: 'Day Race', True: 'Night Race'}, inplace=True)
+
+    # Drop drivers with missing data just in case
+    pivot_df = pivot_df.dropna(subset=['Day Race', 'Night Race'])
 
     # Calculate difference (positive = better in night races)
     pivot_df['difference'] = pivot_df['Day Race'] - pivot_df['Night Race']
     pivot_df = pivot_df.sort_values('difference', ascending=False)
 
-    # Use ALL drivers
     all_drivers = pivot_df
 
     fig, ax = plt.subplots(figsize=(16, 12))
@@ -171,14 +170,11 @@ def plot_driver_comparison_day_vs_night():
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(plots_dir / 'driver_comparison_day_night.png', dpi=300, bbox_inches='tight')
-    print(f"Graf uložen: {plots_dir / 'driver_comparison_day_night.png'}")
-    print(f"Počet zobrazených jezdců: {len(all_drivers)}")
 
     plt.show()
-    plt.close()
+    plt.close(fig)
 
-    print("\n=== Day vs Night Performance (All Drivers) ===")
-    print(all_drivers[['Day Race', 'Night Race', 'difference']].to_string())
+    return all_drivers
 
 
 def plot_driver_comparison_city_vs_regular():
@@ -220,7 +216,7 @@ def plot_driver_comparison_city_vs_regular():
     drivers_both = df.groupby('driver')['city_circuit'].nunique()
     drivers_both = drivers_both[drivers_both == 2].index
 
-    df_both = df[df['driver'].isin(drivers_both)]
+    df_both = df[df['driver'].isin(drivers_both)].copy()
 
     # Create pivot for scatter plot
     pivot_df = df_both.pivot_table(
@@ -229,13 +225,16 @@ def plot_driver_comparison_city_vs_regular():
         columns='city_circuit',
         aggfunc='mean'
     )
-    pivot_df.columns = ['Regular Circuit', 'City Circuit']
+    # Ensure columns are named consistently
+    pivot_df.rename(columns={False: 'Regular Circuit', True: 'City Circuit'}, inplace=True)
+
+    # Drop drivers with missing data just in case
+    pivot_df = pivot_df.dropna(subset=['Regular Circuit', 'City Circuit'])
 
     # Calculate difference (positive = better in city circuits)
     pivot_df['difference'] = pivot_df['Regular Circuit'] - pivot_df['City Circuit']
     pivot_df = pivot_df.sort_values('difference', ascending=False)
 
-    # Use ALL drivers
     all_drivers = pivot_df
 
     fig, ax = plt.subplots(figsize=(16, 12))
@@ -273,22 +272,15 @@ def plot_driver_comparison_city_vs_regular():
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(plots_dir / 'driver_comparison_city_regular.png', dpi=300, bbox_inches='tight')
-    print(f"Graf uložen: {plots_dir / 'driver_comparison_city_regular.png'}")
-    print(f"Počet zobrazených jezdců: {len(all_drivers)}")
 
     plt.show()
-    plt.close()
+    plt.close(fig)
 
-    print("\n=== City vs Regular Circuit Performance (All Drivers) ===")
-    print(all_drivers[['Regular Circuit', 'City Circuit', 'difference']].to_string())
+    return all_drivers
 
 
 if __name__ == "__main__":
-    print("=== 1. Driver Performance Heatmap (All Drivers) ===")
-    plot_driver_heatmap_conditions()
-
-    print("\n=== 2. Day vs Night Race Comparison (All Drivers) ===")
-    plot_driver_comparison_day_vs_night()
-
-    print("\n=== 3. City vs Regular Circuit Comparison (All Drivers) ===")
-    plot_driver_comparison_city_vs_regular()
+    # Run plots and collect returned DataFrames if needed
+    heatmap_df = plot_driver_heatmap_conditions()
+    day_night_df = plot_driver_comparison_day_vs_night()
+    city_regular_df = plot_driver_comparison_city_vs_regular()

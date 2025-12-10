@@ -1,7 +1,5 @@
 import duckdb
-import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 
 class TireStintAnalysis:
@@ -126,7 +124,7 @@ class TireStintAnalysis:
         colors = {'SOFT': '#FF4444', 'MEDIUM': '#FFD700', 'HARD': '#FFFFFF'}
         edge_colors = {'SOFT': '#CC0000', 'MEDIUM': '#CCAA00', 'HARD': '#333333'}
 
-        # 1) Sloupcový graf průměrné délky stintu
+        # 1) Bar chart for average stint length
         fig1, ax1 = plt.subplots(figsize=(10, 6))
         x_pos = range(len(df))
         ax1.bar(
@@ -156,7 +154,7 @@ class TireStintAnalysis:
         plt.savefig(fname_avg, dpi=300, bbox_inches='tight')
         plt.close(fig1)
 
-        # 2) Boxplot distribuce délek stintů
+        # 2) Boxplot of stint length distributions
         stint_distributions = []
         labels = []
         for compound in ['SOFT', 'MEDIUM', 'HARD']:
@@ -185,23 +183,8 @@ class TireStintAnalysis:
         plt.savefig(fname_dist, dpi=300, bbox_inches='tight')
         plt.close(fig2)
 
-    def print_results(self, df):
-        """Print tire stint statistics to console."""
-        print("=" * 90)
-        print("🏎️  TIRE STINT ANALYSIS — Average laps per compound")
-        print("=" * 90)
-        print(f"{'Compound':<12} {'Stints':>8} {'Avg ± SE':>18} {'Median':>10} {'Min':>8} {'Max':>8}")
-        print("-" * 90)
-
-        for idx, row in df.iterrows():
-            print(f"{row['tire_compound']:<12} "
-                  f"{row['total_stints']:>8.0f} "
-                  f"{row['avg_laps']:>8.2f} ± {row['se_laps']:>5.2f} "
-                  f"{row['median_laps']:>10.1f} "
-                  f"{row['min_laps']:>8.0f} "
-                  f"{row['max_laps']:>8.0f}")
-
-        print("=" * 90)
+    def get_results(self):
+        return self.analyze_tire_stints()
 
     def close(self):
         self.conn.close()
@@ -210,6 +193,5 @@ class TireStintAnalysis:
 if __name__ == "__main__":
     analyzer = TireStintAnalysis()
     tire_df = analyzer.analyze_tire_stints()
-    analyzer.print_results(tire_df)
     analyzer.plot_tire_stints(tire_df)
     analyzer.close()

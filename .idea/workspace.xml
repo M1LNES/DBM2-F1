@@ -5,8 +5,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="351db5cc-f7a1-465d-95a8-f559aa503477" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/visualisation/6_machine_learning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/1_atractivity.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualisation/1_atractivity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/1_lead_changes.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/2_compound.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualisation/2_compound.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/2_top5_volatility.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/3_close_racing.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/3_compound_speed.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualisation/3_compound_speed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/4_qualy_city.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualisation/4_qualy_city.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/4_unpredictability.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/5_battle_intensity.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/5_correlation.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualisation/5_correlation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/5_drivers_night.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualisation/5_drivers_night.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/5_drivers_weather.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualisation/5_drivers_weather.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/6_composite_score.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/6_machine_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/visualisation/6_machine_learning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/correlation_circuit_type.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/correlation_tyre_strategy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/correlation_weather_performance.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/driver_comparison_city_regular.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/driver_comparison_day_night.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/driver_comparison_rain_dry.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/driver_comparison_track_temp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/driver_performance_heatmap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/driver_weather_heatmap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/ml_feature_importance_decision_tree.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/ml_feature_importance_gradient_boosting.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/ml_feature_importance_lightgbm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/ml_feature_importance_random_forest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/ml_feature_importance_xgboost.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/ml_model_comparison.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/ml_summary_table.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/qualy_transition_city_circuit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/qualy_transition_day_race.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/qualy_transition_night_race.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/qualy_transition_non_city_circuit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/plots/qualy_transition_whole.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/tire_lap_time_analysis.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/tire_lap_time_boxplot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/tire_stint_avg_laps.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visualisation/tire_stint_distribution.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,75 +73,76 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.1_atractivity.executor&quot;: &quot;Run&quot;,
-    &quot;Python.1_fetch.executor&quot;: &quot;Run&quot;,
-    &quot;Python.2_compound (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.2_pokus.executor&quot;: &quot;Run&quot;,
-    &quot;Python.2_vliv.executor&quot;: &quot;Run&quot;,
-    &quot;Python.3_compound_speed.executor&quot;: &quot;Run&quot;,
-    &quot;Python.3_pok.executor&quot;: &quot;Run&quot;,
-    &quot;Python.4_a.executor&quot;: &quot;Run&quot;,
-    &quot;Python.4_qualy.executor&quot;: &quot;Run&quot;,
-    &quot;Python.4_qualy_city.executor&quot;: &quot;Run&quot;,
-    &quot;Python.5_another.executor&quot;: &quot;Run&quot;,
-    &quot;Python.5_correlation.executor&quot;: &quot;Run&quot;,
-    &quot;Python.5_drivers_night (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.5_drivers_weather.executor&quot;: &quot;Run&quot;,
-    &quot;Python.5a.executor&quot;: &quot;Run&quot;,
-    &quot;Python.6_machine_learning.executor&quot;: &quot;Run&quot;,
-    &quot;Python.aa.executor&quot;: &quot;Run&quot;,
-    &quot;Python.asdasdasd.executor&quot;: &quot;Run&quot;,
-    &quot;Python.atr.executor&quot;: &quot;Run&quot;,
-    &quot;Python.b.executor&quot;: &quot;Run&quot;,
-    &quot;Python.b1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.blud.executor&quot;: &quot;Run&quot;,
-    &quot;Python.blud2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.circuit_mapper.executor&quot;: &quot;Run&quot;,
-    &quot;Python.classs.executor&quot;: &quot;Run&quot;,
-    &quot;Python.cor.executor&quot;: &quot;Run&quot;,
-    &quot;Python.cota.executor&quot;: &quot;Run&quot;,
-    &quot;Python.dalsi.executor&quot;: &quot;Run&quot;,
-    &quot;Python.das.executor&quot;: &quot;Run&quot;,
-    &quot;Python.db-init.executor&quot;: &quot;Run&quot;,
-    &quot;Python.db_init.executor&quot;: &quot;Run&quot;,
-    &quot;Python.driver_ids.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hamver.executor&quot;: &quot;Run&quot;,
-    &quot;Python.idk.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pk.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pokus.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pokus2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pokus3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pole_conv.executor&quot;: &quot;Run&quot;,
-    &quot;Python.process_qualifying.executor&quot;: &quot;Run&quot;,
-    &quot;Python.qualifying_processor.executor&quot;: &quot;Run&quot;,
-    &quot;Python.races_ids.executor&quot;: &quot;Run&quot;,
-    &quot;Python.rain_master.executor&quot;: &quot;Run&quot;,
-    &quot;Python.se.executor&quot;: &quot;Run&quot;,
-    &quot;Python.simple.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sort.executor&quot;: &quot;Run&quot;,
-    &quot;Python.tyres.executor&quot;: &quot;Run&quot;,
-    &quot;Python.ukazka.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/milan/PycharmProjects/DBM2-sem/images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.1_atractivity.executor": "Run",
+    "Python.1_fetch.executor": "Run",
+    "Python.2_compound (1).executor": "Run",
+    "Python.2_compound.executor": "Run",
+    "Python.2_pokus.executor": "Run",
+    "Python.2_vliv.executor": "Run",
+    "Python.3_compound_speed.executor": "Run",
+    "Python.3_pok.executor": "Run",
+    "Python.4_a.executor": "Run",
+    "Python.4_qualy.executor": "Run",
+    "Python.4_qualy_city.executor": "Run",
+    "Python.5_another.executor": "Run",
+    "Python.5_correlation.executor": "Run",
+    "Python.5_drivers_night (1).executor": "Run",
+    "Python.5_drivers_weather.executor": "Run",
+    "Python.5a.executor": "Run",
+    "Python.6_machine_learning.executor": "Run",
+    "Python.aa.executor": "Run",
+    "Python.asdasdasd.executor": "Run",
+    "Python.atr.executor": "Run",
+    "Python.b.executor": "Run",
+    "Python.b1.executor": "Run",
+    "Python.blud.executor": "Run",
+    "Python.blud2.executor": "Run",
+    "Python.circuit_mapper.executor": "Run",
+    "Python.classs.executor": "Run",
+    "Python.cor.executor": "Run",
+    "Python.cota.executor": "Run",
+    "Python.dalsi.executor": "Run",
+    "Python.das.executor": "Run",
+    "Python.db-init.executor": "Run",
+    "Python.db_init.executor": "Run",
+    "Python.driver_ids.executor": "Run",
+    "Python.hamver.executor": "Run",
+    "Python.idk.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.pk.executor": "Run",
+    "Python.pokus.executor": "Run",
+    "Python.pokus2.executor": "Run",
+    "Python.pokus3.executor": "Run",
+    "Python.pole_conv.executor": "Run",
+    "Python.process_qualifying.executor": "Run",
+    "Python.qualifying_processor.executor": "Run",
+    "Python.races_ids.executor": "Run",
+    "Python.rain_master.executor": "Run",
+    "Python.se.executor": "Run",
+    "Python.simple.executor": "Run",
+    "Python.sort.executor": "Run",
+    "Python.tyres.executor": "Run",
+    "Python.ukazka.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/milan/PycharmProjects/DBM2-sem/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;exasol&quot;,
-      &quot;duckdb&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "exasol",
+      "duckdb"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\milan\PycharmProjects\DBM2-sem\data\metadata" />
@@ -140,7 +179,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="5_drivers_night (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="5_correlation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="DBM2-sem" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -154,7 +193,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/visualisation/5_drivers_night.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/visualisation/5_correlation.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -177,7 +216,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\milan\PycharmProjects\DBM2-sem\visualisation\5_drivers_night.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/visualisation/5_drivers_night.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -235,10 +274,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.6_machine_learning" />
-        <item itemvalue="Python.4_qualy_city" />
         <item itemvalue="Python.5_drivers_weather" />
-        <item itemvalue="Python.5_drivers_night (1)" />
         <item itemvalue="Python.5_drivers_night" />
+        <item itemvalue="Python.5_correlation" />
+        <item itemvalue="Python.4_qualy_city" />
       </list>
     </recent_temporary>
   </component>
@@ -285,6 +324,8 @@
       <workItem from="1764598701556" duration="3633000" />
       <workItem from="1764666674209" duration="485000" />
       <workItem from="1764667540653" duration="5902000" />
+      <workItem from="1764748630689" duration="623000" />
+      <workItem from="1765394540783" duration="2152000" />
     </task>
     <servers />
   </component>
@@ -300,12 +341,12 @@
     <SUITE FILE_PATH="coverage/DBM2_sem$dalsi.coverage" NAME="dalsi Coverage Results" MODIFIED="1762007878581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
     <SUITE FILE_PATH="coverage/DBM2_sem$db_init.coverage" NAME="db_init Coverage Results" MODIFIED="1761649843744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/DBM2_sem$process_qualifying.coverage" NAME="process_qualifying Coverage Results" MODIFIED="1761659457733" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/script" />
-    <SUITE FILE_PATH="coverage/DBM2_sem$rain_master.coverage" NAME="rain_master Coverage Results" MODIFIED="1761661358730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DBM2_sem$2_pokus.coverage" NAME="2_pokus Coverage Results" MODIFIED="1762106166081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
+    <SUITE FILE_PATH="coverage/DBM2_sem$rain_master.coverage" NAME="rain_master Coverage Results" MODIFIED="1761661358730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DBM2_sem$ukazka.coverage" NAME="ukazka Coverage Results" MODIFIED="1761489238817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DBM2_sem$3_compound_speed.coverage" NAME="3_compound_speed Coverage Results" MODIFIED="1764249875267" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
-    <SUITE FILE_PATH="coverage/DBM2_sem$pokus3.coverage" NAME="pokus3 Coverage Results" MODIFIED="1761488054430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DBM2_sem$pole_conv.coverage" NAME="pole_conv Coverage Results" MODIFIED="1761661060718" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DBM2_sem$pokus3.coverage" NAME="pokus3 Coverage Results" MODIFIED="1761488054430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DBM2_sem$b.coverage" NAME="b Coverage Results" MODIFIED="1761947271950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DBM2_sem$5_drivers_night__1_.coverage" NAME="5_drivers_night (1) Coverage Results" MODIFIED="1764258253878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
     <SUITE FILE_PATH="coverage/DBM2_sem$classs.coverage" NAME="classs Coverage Results" MODIFIED="1761947807756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -318,7 +359,7 @@
     <SUITE FILE_PATH="coverage/DBM2_sem$tyres.coverage" NAME="tyres Coverage Results" MODIFIED="1761662443553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DBM2_sem$5_another.coverage" NAME="5_another Coverage Results" MODIFIED="1764257607184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
     <SUITE FILE_PATH="coverage/DBM2_sem$blud2.coverage" NAME="blud2 Coverage Results" MODIFIED="1761661836185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DBM2_sem$1_atractivity.coverage" NAME="1_atractivity Coverage Results" MODIFIED="1762005581176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
+    <SUITE FILE_PATH="coverage/DBM2_sem$1_atractivity.coverage" NAME="1_atractivity Coverage Results" MODIFIED="1765396788306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
     <SUITE FILE_PATH="coverage/DBM2_sem$qualifying_processor.coverage" NAME="qualifying_processor Coverage Results" MODIFIED="1761648361005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/processors" />
     <SUITE FILE_PATH="coverage/DBM2_sem$4_qualy_city.coverage" NAME="4_qualy_city Coverage Results" MODIFIED="1764667118516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
     <SUITE FILE_PATH="coverage/DBM2_sem$pokus2.coverage" NAME="pokus2 Coverage Results" MODIFIED="1761487697388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -335,6 +376,7 @@
     <SUITE FILE_PATH="coverage/DBM2_sem$5_drivers_weather.coverage" NAME="5_drivers_weather Coverage Results" MODIFIED="1764258276085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
     <SUITE FILE_PATH="coverage/DBM2_sem$cota.coverage" NAME="cota Coverage Results" MODIFIED="1762108507368" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
     <SUITE FILE_PATH="coverage/DBM2_sem$2_vliv.coverage" NAME="2_vliv Coverage Results" MODIFIED="1762111348441" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
+    <SUITE FILE_PATH="coverage/DBM2_sem$2_compound.coverage" NAME="2_compound Coverage Results" MODIFIED="1765396809175" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
     <SUITE FILE_PATH="coverage/DBM2_sem$races_ids.coverage" NAME="races_ids Coverage Results" MODIFIED="1761647079897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/script" />
     <SUITE FILE_PATH="coverage/DBM2_sem$5a.coverage" NAME="5a Coverage Results" MODIFIED="1762107547436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />
     <SUITE FILE_PATH="coverage/DBM2_sem$idk.coverage" NAME="idk Coverage Results" MODIFIED="1762108375885" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/visualisation" />

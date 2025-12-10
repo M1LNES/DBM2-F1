@@ -2,7 +2,6 @@ import duckdb
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
 from pathlib import Path
 
 
@@ -99,14 +98,11 @@ def plot_driver_weather_heatmap():
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(plots_dir / 'driver_weather_heatmap.png', dpi=300, bbox_inches='tight')
-    print(f"Graf uložen: {plots_dir / 'driver_weather_heatmap.png'}")
-    print(f"Počet zobrazených jezdců: {num_drivers}")
 
     plt.show()
     plt.close()
 
-    print("\n=== Weather Heatmap Data (All Drivers) ===")
-    print(pivot_df)
+    return pivot_df
 
 
 def plot_driver_comparison_rain_vs_dry():
@@ -211,14 +207,11 @@ def plot_driver_comparison_rain_vs_dry():
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(plots_dir / 'driver_comparison_rain_dry.png', dpi=300, bbox_inches='tight')
-    print(f"Graf uložen: {plots_dir / 'driver_comparison_rain_dry.png'}")
-    print(f"Počet zobrazených jezdců: {len(all_drivers)}")
 
     plt.show()
     plt.close()
 
-    print("\n=== Rain vs Dry Performance (All Drivers) ===")
-    print(all_drivers[['Dry Conditions', 'Rain Conditions', 'difference']].to_string())
+    return all_drivers
 
 
 def plot_driver_comparison_track_temperature():
@@ -325,22 +318,14 @@ def plot_driver_comparison_track_temperature():
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(plots_dir / 'driver_comparison_track_temp.png', dpi=300, bbox_inches='tight')
-    print(f"Graf uložen: {plots_dir / 'driver_comparison_track_temp.png'}")
-    print(f"Počet zobrazených jezdců: {len(all_drivers)}")
 
     plt.show()
     plt.close()
 
-    print("\n=== Cold vs Hot Track Performance (All Drivers) ===")
-    print(all_drivers[['Cold Track (<35°C)', 'Hot Track (≥35°C)', 'difference']].to_string())
+    return all_drivers
 
 
 if __name__ == "__main__":
-    print("=== 1. Driver Performance Heatmap by Weather (All Drivers) ===")
     plot_driver_weather_heatmap()
-
-    print("\n=== 2. Rain vs Dry Conditions Comparison (All Drivers) ===")
     plot_driver_comparison_rain_vs_dry()
-
-    print("\n=== 3. Cold vs Hot Track Temperature Comparison (All Drivers) ===")
     plot_driver_comparison_track_temperature()

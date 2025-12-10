@@ -2,15 +2,14 @@ import duckdb
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
 from pathlib import Path
 
 
 def correlation_whole():
-    # Připojení k databázi
+    # Connect to the database
     conn = duckdb.connect('../race_database.db')
 
-    # Získání dat: pozice z kvalifikace vs konečná pozice v závodě
+    # Get data: qualifying position vs final race position
     query = """
       WITH race_final_positions AS (
           SELECT
@@ -42,7 +41,7 @@ def correlation_whole():
     df = pd.read_sql(query, conn)
     conn.close()
 
-    # Vytvoření pivot tabulky pro heatmapu (normalizováno na procenta)
+    # Create pivot table for heatmap (normalized to percentages)
     pivot = df.pivot_table(
         index='quali_position',
         columns='final_position',
@@ -50,10 +49,10 @@ def correlation_whole():
         fill_value=0
     )
 
-    # Převod na procenta (pro každou startovní pozici)
+    # Convert to percentages (per starting position)
     pivot_pct = pivot.div(pivot.sum(axis=1), axis=0) * 100
 
-    # Vytvoření heatmapy
+    # Create heatmap
     fig = plt.figure(figsize=(16, 12))
     sns.heatmap(
         pivot_pct,
@@ -70,28 +69,20 @@ def correlation_whole():
     plt.ylabel('Starting Position (Qualifying)', fontsize=12)
     plt.tight_layout()
 
-    # Uložení grafu
+    # Save plot
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
     fig.savefig(plots_dir / 'qualy_transition_whole.png', dpi=300, bbox_inches='tight')
-    print(f"Graf uložen: {plots_dir / 'qualy_transition_whole.png'}")
 
     plt.show()
     plt.close()
 
-    # Výpis statistiky pro diagonálu (stejná pozice)
-    print("\n=== Statistika: Procento závodů se stejnou pozicí ===")
-    for pos in pivot_pct.index:
-        if pos in pivot_pct.columns:
-            pct = pivot_pct.loc[pos, pos]
-            print(f"Pozice {int(pos)}: {pct:.1f}% závodů")
-
 
 def plot_qualy_city_circuit_correlation():
-    # Připojení k databázi
+    # Connect to the database
     conn = duckdb.connect('../race_database.db')
 
-    # Získání dat: pozice z kvalifikace vs konečná pozice v závodě + city_circuit
+    # Get data: qualifying position vs final position + city_circuit flag
     query = """
     WITH race_final_positions AS (
         SELECT
@@ -125,11 +116,11 @@ def plot_qualy_city_circuit_correlation():
     df = pd.read_sql(query, conn)
     conn.close()
 
-    # Rozdělení dat na městské a neměstské okruhy
+    # Split data into city and non-city circuits
     df_city = df[df['city_circuit'] == True]
     df_non_city = df[df['city_circuit'] == False]
 
-    # Vytvoření složky pro ukládání
+    # Create folder for saving
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
 
@@ -137,7 +128,7 @@ def plot_qualy_city_circuit_correlation():
         (df_city, 'City Circuits', 'qualy_transition_city_circuit.png'),
         (df_non_city, 'Non-City Circuits', 'qualy_transition_non_city_circuit.png')
     ]:
-        # Vytvoření pivot tabulky
+        # Create pivot table
         pivot = data.pivot_table(
             index='quali_position',
             columns='final_position',
@@ -145,16 +136,16 @@ def plot_qualy_city_circuit_correlation():
             fill_value=0
         )
 
-        # Převod na procenta
+        # Convert to percentages
         if pivot.empty:
             pivot_pct = pivot.copy()
         else:
             pivot_pct = pivot.div(pivot.sum(axis=1), axis=0) * 100
 
-        # Vytvoření samostatného figure pro každý graf
+        # Create a separate figure for each plot
         fig = plt.figure(figsize=(16, 12))
 
-        # Heatmapa
+        # Heatmap
         sns.heatmap(
             pivot_pct,
             annot=True,
@@ -169,28 +160,20 @@ def plot_qualy_city_circuit_correlation():
         plt.xlabel('Final Position in Race', fontsize=12)
         plt.ylabel('Starting Position (Qualifying)', fontsize=12)
 
-        # Statistika pro diagonálu
-        print(f"\n=== {title}: Procento závodů se stejnou pozicí ===")
-        for pos in pivot_pct.index:
-            if pos in pivot_pct.columns:
-                pct = pivot_pct.loc[pos, pos]
-                print(f"Pozice {int(pos)}: {pct:.1f}% závodů")
-
         plt.tight_layout()
 
-        # Uložení grafu
+        # Save plot
         fig.savefig(plots_dir / filename, dpi=300, bbox_inches='tight')
-        print(f"Graf uložen: {plots_dir / filename}")
 
         plt.show()
         plt.close()
 
 
 def plot_qualy_night_race_correlation():
-    # Připojení k databázi
+    # Connect to the database
     conn = duckdb.connect('../race_database.db')
 
-    # Získání dat: pozice z kvalifikace vs konečná pozice v závodě + night_race
+    # Get data: qualifying position vs final position + night_race flag
     query = """
     WITH race_final_positions AS (
         SELECT
@@ -224,11 +207,11 @@ def plot_qualy_night_race_correlation():
     df = pd.read_sql(query, conn)
     conn.close()
 
-    # Rozdělení dat na noční a denní závody
+    # Split data into night and day races
     df_night = df[df['night_race'] == True]
     df_day = df[df['night_race'] == False]
 
-    # Vytvoření složky pro ukládání
+    # Create folder for saving
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
 
@@ -236,7 +219,7 @@ def plot_qualy_night_race_correlation():
         (df_night, 'Night Races', 'qualy_transition_night_race.png'),
         (df_day, 'Day Races', 'qualy_transition_day_race.png')
     ]:
-        # Vytvoření pivot tabulky
+        # Create pivot table
         pivot = data.pivot_table(
             index='quali_position',
             columns='final_position',
@@ -244,16 +227,16 @@ def plot_qualy_night_race_correlation():
             fill_value=0
         )
 
-        # Převod na procenta
+        # Convert to percentages
         if pivot.empty:
             pivot_pct = pivot.copy()
         else:
             pivot_pct = pivot.div(pivot.sum(axis=1), axis=0) * 100
 
-        # Vytvoření samostatného figure pro každý graf
+        # Create a separate figure for each plot
         fig = plt.figure(figsize=(16, 12))
 
-        # Heatmapa
+        # Heatmap
         sns.heatmap(
             pivot_pct,
             annot=True,
@@ -268,18 +251,10 @@ def plot_qualy_night_race_correlation():
         plt.xlabel('Final Position in Race', fontsize=12)
         plt.ylabel('Starting Position (Qualifying)', fontsize=12)
 
-        # Statistika pro diagonálu
-        print(f"\n=== {title}: Procento závodů se stejnou pozicí ===")
-        for pos in pivot_pct.index:
-            if pos in pivot_pct.columns:
-                pct = pivot_pct.loc[pos, pos]
-                print(f"Pozice {int(pos)}: {pct:.1f}% závodů")
-
         plt.tight_layout()
 
-        # Uložení grafu
+        # Save plot
         fig.savefig(plots_dir / filename, dpi=300, bbox_inches='tight')
-        print(f"Graf uložen: {plots_dir / filename}")
 
         plt.show()
         plt.close()

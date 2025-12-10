@@ -9,10 +9,9 @@ from sklearn.linear_model import Lasso, Ridge, BayesianRidge, ElasticNet
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import matplotlib.pyplot as plt
-import seaborn as sns
 from pathlib import Path
 
-# Kontrola dostupnosti pokročilých knihoven
+# Check availability of advanced libraries
 try:
     from xgboost import XGBRegressor
     XGBOOST_AVAILABLE = True
@@ -27,7 +26,7 @@ except ImportError:
 
 
 def prepare_ml_data():
-    """Příprava dat pro strojové učení."""
+    """Prepare data for machine learning."""
     conn = duckdb.connect('../race_database.db')
 
     query = """
@@ -100,8 +99,7 @@ def prepare_ml_data():
 
 
 def train_and_evaluate_models(X_train, X_test, y_train, y_test):
-    """Trénování a vyhodnocení různých ML algoritmů."""
-
+    """Train and evaluate different ML algorithms."""
     models = {
         'Bayesian Ridge': BayesianRidge(),
         'Random Forest': RandomForestRegressor(n_estimators=100, random_state=42, n_jobs=-1),
@@ -142,13 +140,13 @@ def train_and_evaluate_models(X_train, X_test, y_train, y_test):
 
 
 def plot_model_comparison(results_df):
-    """Zjednodušené porovnání modelů - pouze MAE a R²."""
+    """Simplified model comparison - only MAE and R²."""
     plots_dir = Path('plots')
     plots_dir.mkdir(parents=True, exist_ok=True)
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
 
-    # 1. MAE porovnání (Train vs Test) - nejdůležitější metrika
+    # 1. MAE comparison (Train vs Test)
     x = np.arange(len(results_df))
     width = 0.35
     ax1.bar(x - width/2, results_df['MAE Train'], width, label='Train', alpha=0.8, color='skyblue')
@@ -161,7 +159,7 @@ def plot_model_comparison(results_df):
     ax1.legend()
     ax1.grid(True, alpha=0.3, axis='y')
 
-    # 2. R² Score - kvalita predikce
+    # 2. R² Score comparison
     colors = plt.cm.RdYlGn((results_df['R² Test'] - results_df['R² Test'].min()) /
                            (results_df['R² Test'].max() - results_df['R² Test'].min()))
     ax2.barh(results_df['Model'], results_df['R² Test'], color=colors, alpha=0.8)
@@ -173,12 +171,11 @@ def plot_model_comparison(results_df):
 
     plt.tight_layout()
     fig.savefig(plots_dir / 'ml_model_comparison.png', dpi=300, bbox_inches='tight')
-    print(f"📊 Graf uložen: {plots_dir / 'ml_model_comparison.png'}")
     plt.close()
 
 
 def create_summary_table(results_df):
-    """Hlavní přehledná tabulka se všemi metrikami."""
+    """Main summary table with all metrics."""
     plots_dir = Path('plots')
     sorted_df = results_df.sort_values('MAE Test').reset_index(drop=True)
 
@@ -212,20 +209,20 @@ def create_summary_table(results_df):
     table.set_fontsize(9)
     table.scale(1, 2.8)
 
-    # Styling hlavičky
+    # Header styling
     for i in range(len(headers)):
         cell = table[(0, i)]
         cell.set_facecolor('#2E75B6')
         cell.set_text_props(weight='bold', color='white', ha='center')
 
-    # Barevné kódování řádků podle výkonu
-    colors = ['#70AD47', '#92D050', '#C5E0B4']  # Zelená pro top 3
+    # Row coloring by performance
+    colors = ['#70AD47', '#92D050', '#C5E0B4']  # green for top 3
     for i in range(len(stats_data)):
         color = colors[i] if i < 3 else '#FFF2CC' if i < 5 else '#F2F2F2'
         for j in range(len(headers)):
             table[(i + 1, j)].set_facecolor(color)
 
-        # Zvýraznění velkého overfittingu červeně
+        # Highlight large overfitting in red
         if float(stats_data[i][6]) > 0.5:
             table[(i + 1, 6)].set_facecolor('#FFC7CE')
 
@@ -234,12 +231,11 @@ def create_summary_table(results_df):
               fontsize=14, weight='bold', pad=20)
     plt.tight_layout()
     fig.savefig(plots_dir / 'ml_summary_table.png', dpi=300, bbox_inches='tight')
-    print(f"📊 Graf uložen: {plots_dir / 'ml_summary_table.png'}")
     plt.close()
 
 
 def analyze_feature_importance(X_train, y_train, feature_names):
-    """Analýza důležitosti features - každý model vlastní soubor."""
+    """Feature importance analysis - separate file per model."""
     plots_dir = Path('plots')
 
     tree_models = {
@@ -255,9 +251,7 @@ def analyze_feature_importance(X_train, y_train, feature_names):
         from lightgbm import LGBMRegressor
         tree_models['LightGBM'] = LGBMRegressor(n_estimators=100, random_state=42, n_jobs=-1, verbose=-1)
 
-    print("\n" + "=" * 80)
-    print("FEATURE IMPORTANCE ANALYSIS")
-    print("=" * 80)
+    importances_dict = {}
 
     for name, model in tree_models.items():
         model.fit(X_train, y_train)
@@ -267,15 +261,14 @@ def analyze_feature_importance(X_train, y_train, feature_names):
             'Importance': model.feature_importances_
         }).sort_values('Importance', ascending=False)
 
-        print(f"\n🌳 {name}:")
-        print(importances.to_string(index=False))
+        importances_dict[name] = importances
 
-        # Samostatný graf pro každý model
+        # Individual plot for each model
         fig, ax = plt.subplots(figsize=(10, 6))
         colors = plt.cm.viridis(importances['Importance'] / importances['Importance'].max())
         bars = ax.barh(importances['Feature'], importances['Importance'], color=colors)
 
-        # Přidání hodnot na konec sloupců
+        # Add values at the end of bars
         for i, (bar, importance) in enumerate(zip(bars, importances['Importance'])):
             ax.text(importance + 0.01, bar.get_y() + bar.get_height()/2,
                    f'{importance:.3f}', va='center', fontsize=9)
@@ -287,26 +280,16 @@ def analyze_feature_importance(X_train, y_train, feature_names):
         plt.tight_layout()
         filename = f"ml_feature_importance_{name.replace(' ', '_').lower()}.png"
         fig.savefig(plots_dir / filename, dpi=300, bbox_inches='tight')
-        print(f"   📊 Graf uložen: {plots_dir / filename}")
         plt.close()
+
+    return importances_dict
 
 
 def main():
-    print("=" * 80)
-    print("MACHINE LEARNING: RACE POSITION PREDICTION")
-    print("=" * 80)
-    print("\nHypothesis: Can we predict final race position based on:")
-    print("  • Qualifying position")
-    print("  • Circuit type (city/regular)")
-    print("  • Race conditions (day/night, rain)")
-    print("  • Driver historical performance")
-
-    # Načtení dat
-    print("\n🔄 Loading data...")
+    # Load data
     df = prepare_ml_data()
-    print(f"   ✓ Loaded {len(df)} records")
 
-    # Příprava
+    # Prepare
     feature_cols = ['quali_position', 'is_city_circuit', 'is_night_race', 'is_rain',
                     'driver_avg_position', 'driver_stddev_position', 'driver_total_races']
     X = df[feature_cols]
@@ -318,44 +301,25 @@ def main():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.transform(X_test)
 
-    print(f"   ✓ Train set: {len(X_train)} records ({len(X_train)/len(X)*100:.1f}%)")
-    print(f"   ✓ Test set: {len(X_test)} records ({len(X_test)/len(X)*100:.1f}%)")
-
-    # Trénování
-    print("\n🔄 Training models...")
+    # Training
     results_df = train_and_evaluate_models(X_train_scaled, X_test_scaled, y_train, y_test)
 
-    print("\n" + "=" * 80)
-    print("RESULTS SUMMARY")
-    print("=" * 80)
-    print(results_df.sort_values('MAE Test').to_string(index=False))
+    # Visualizations - only key charts
+    create_summary_table(results_df)                # 1. Summary table
+    plot_model_comparison(results_df)               # 2. MAE and R² comparison
+    analyze_feature_importance(X_train, y_train, feature_cols)  # 3. Feature importance
 
-    # Vizualizace - pouze klíčové grafy
-    print("\n🔄 Creating visualizations...")
-    create_summary_table(results_df)           # 1. Hlavní tabulka
-    plot_model_comparison(results_df)           # 2. Porovnání MAE a R²
-    analyze_feature_importance(X_train, y_train, feature_cols)  # 3. Feature importance (5 souborů)
-
-    # Nejlepší model
+    # Best model
     best = results_df.loc[results_df['MAE Test'].idxmin()]
-    print("\n" + "=" * 80)
-    print("🏆 BEST MODEL")
-    print("=" * 80)
-    print(f"Model: {best['Model']}")
-    print(f"MAE (Test): {best['MAE Test']:.3f} positions")
-    print(f"RMSE (Test): {best['RMSE Test']:.3f}")
-    print(f"R² (Test): {best['R² Test']:.3f}")
-    print(f"CV MAE: {best['CV MAE']:.3f}")
-    print(f"\n💡 Interpretation:")
-    print(f"   • Model predicts within ±{best['MAE Test']:.1f} positions on average")
-    print(f"   • Explains {best['R² Test']*100:.1f}% of variance in race results")
-    print(f"   • Cross-validation confirms robustness (CV MAE: {best['CV MAE']:.3f})")
 
-    # Top 3 modely
-    print("\n📊 TOP 3 MODELS:")
+    # Top 3 models
     top3 = results_df.nsmallest(3, 'MAE Test')
-    for idx, row in top3.iterrows():
-        print(f"   {row['Model']:20s} - MAE: {row['MAE Test']:.3f}, R²: {row['R² Test']:.3f}")
+
+    return {
+        "results": results_df,
+        "best": best,
+        "top3": top3
+    }
 
 
 if __name__ == "__main__":
